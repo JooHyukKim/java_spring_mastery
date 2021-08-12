@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.controller.rest;
 
 import com.example.demo.dto.PutRequestDTO;
 import org.springframework.web.bind.annotation.*;
