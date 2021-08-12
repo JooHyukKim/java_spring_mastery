@@ -15,6 +15,9 @@ public class PageController {
         return "main.html";
     }
 
+    /*
+    * 컨트롤러에서는 ResponseBody 사용하지 않는게 맞고 혹시나 그러해야할시에만 사용하는게 ResponseBody | GetMapping
+    * */
     @ResponseBody
     @GetMapping("/user")
     public User user() {
