@@ -1,0 +1,6 @@
+{
+  "put01": {
+    "method": "DELETE",
+    "uri": "http://localhost:9090/api/delete/user01?account=whatevers"
+  }
+}

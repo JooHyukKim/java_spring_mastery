@@ -1,0 +1,38 @@
+{
+  "put01": {
+    "method": "PUT",
+    "uri": "http://localhost:9090/api/put",
+    "request_body": {
+      "name": "",
+      "age": 123,
+      "car_list": [
+        {
+          "name": "audi",
+          "car_number": "43러9123"
+        },
+        {
+          "name": "porche",
+          "car_number": "422229123"
+        }
+      ]
+    }
+  },
+  "put02": {
+    "method": "PUT",
+    "uri": "http://localhost:9090/api/put/user01",
+    "request_body": {
+      "name": "",
+      "age": 123,
+      "car_list": [
+        {
+          "name": "audi",
+          "car_number": "43러9123"
+        },
+        {
+          "name": "porche",
+          "car_number": "422229123"
+        }
+      ]
+    }
+  }
+}
