@@ -28,9 +28,5 @@ public class UserApiController {
         return user;
     }
 
-    @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    public ResponseEntity MethodArgumentNotValidException(MethodArgumentNotValidException e) {
-        System.out.println("LOCAL ::: MethodArgumentNotValidException");
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-    }
+
 }
