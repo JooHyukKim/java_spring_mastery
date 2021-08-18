@@ -2,7 +2,6 @@ package com.example.springwithrestaurant.db;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -10,5 +9,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class MemoryDbEntity {
 
-    protected int index;
+    protected Integer index;
 }
