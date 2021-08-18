@@ -19,6 +19,7 @@ public class WishListService {
     private final NaverClient naverClient;
     private final WishListRepository wishListRepository;
 
+
     public WishListDto search(String query) {
         // 지역검색
         var searchLocalReq = new SearchLocalReq();
@@ -90,9 +91,63 @@ public class WishListService {
     }
 
     public List<WishListDto> findAll() {
-        return wishListRepository.listAll()
+        return wishListRepository.findAll()
                 .stream()
                 .map(it -> entityToDto(it))
                 .collect(Collectors.toList());
     }
+
+    public void deleteById(int index) {
+        wishListRepository.deleteById(index);
+    }
+
+    public void addVisit(int index) {
+        var wishItem = wishListRepository.findById(index);
+        if (wishItem.isPresent()) {
+            var item = wishItem.get();
+            item.setVisit(true);
+            item.setVisitCount(item.getVisitCount() + 1);
+
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
