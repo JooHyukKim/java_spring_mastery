@@ -1,5 +1,6 @@
 package com.fastcampus.jpa.bookmanager.repository;
 
+import com.fastcampus.jpa.bookmanager.domain.Gender;
 import com.fastcampus.jpa.bookmanager.domain.User;
 import jdk.vm.ci.meta.Local;
 import org.junit.jupiter.api.Test;
@@ -27,17 +28,45 @@ class UserRepositoryTest {
     }
 
     @Test
+    void enumTest() {
+        User user = userRepository.findById(1L).orElseThrow(RuntimeException::new);
+        user.setGender(Gender.MALE);
+
+        userRepository.save(user);
+
+        userRepository.findAll().forEach(System.out::println);
+
+        System.out.println(userRepository.findRawRecord().get("gender"));
+    }
+
+//    @Test
+//    void insertAndUpdateTest() {
+//        User user = new User();
+//        user.setName("martin");
+//        user.setName("martin2@fastcampus.com");
+//
+//        userRepository.save(user);
+//
+//        User user2 = userRepository.findById(1L).orElseThrow(RuntimeException::new);
+//    }
+
+    @Test
     void crud6() {
         /*
         print("---------------------------------------------------------------------");
         print(userRepository.findByName("martin", Sort.by(Sort.Order.desc("id"), Sort.Order.asc("email"))));
         print(userRepository.findFirstByName("martin", Sort.by(Sort.Order.desc("id"))));
-        */
+
+
+
         print("---------------------------------------------------------------------");
         print(userRepository.findByName("martin"));
         print("---------------------------------------------------------------------");
         Sort sort = Sort.by(Sort.Order.desc("id"));
         print(userRepository.findByName("martin", PageRequest.of(1, 1, sort)));
+
+        */
+
 //        print(userRepository.findLast1ByName("martin"));
 //        print(userRepository.findLast1ByNameOOrderByIdDesc("martin"));
 //        print(userRepository.findTopByNameOrderByIdDescEmailAsc("mar"));
