@@ -29,11 +29,8 @@ public class User {
     private Long id;
 
     @NonNull
-    @Column(unique = true)
+    @Column(unique = false)
     private String name;
-
-    @Enumerated(value=EnumType.STRING)
-    private Gender gender;
 
     @NonNull
     private String email;
@@ -43,6 +40,12 @@ public class User {
 //    @Column(insertable = false)
     private LocalDateTime createdAt;
 
-    @Transient // 영속성을 다루난 db 와 관련없이, db에는 반영도 표시도 안되고 , 객체와 생명주기를 같이함.
+//    @Transient // 영속성을 다루난 db 와 관련없이, db에는 반영도 표시도 안되고 , 객체와 생명주기를 같이함.
     private LocalDateTime updatedAt;
+
+    @Enumerated(value=EnumType.STRING)
+    private Gender gender;
+
+
+
 }

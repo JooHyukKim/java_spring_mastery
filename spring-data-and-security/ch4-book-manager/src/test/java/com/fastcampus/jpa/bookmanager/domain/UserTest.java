@@ -1,8 +1,10 @@
 package com.fastcampus.jpa.bookmanager.domain;
 
+import static com.fastcampus.jpa.bookmanager.domain.Gender.MALE;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.Test;
 
 /**
@@ -17,14 +19,15 @@ class UserTest {
         user.setName("martin");
         user.setCreatedAt(LocalDateTime.now());
         user.setUpdatedAt(LocalDateTime.now());
-
-        User user1 = new User(null, "martin", "martin@fastcampus.com", LocalDateTime.now(), LocalDateTime.now());
+//
+//        User user1 = new User("martin", "martin@fastcampus.com", LocalDateTime.now(), LocalDateTime.now(), Gender.MALE);
+//
         User user2 = new User("martin", "martin@fastcampus.com");
 
         User user3 = User.builder()
-            .name("martin")
-            .email("martin@fastcampus.com")
-            .build();
+                .name("martin")
+                .email("martin@fastcampus.com")
+                .build();
 
         System.out.println(">>> " + user.toString());
     }
