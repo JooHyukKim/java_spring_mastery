@@ -5,10 +5,7 @@ import jdk.vm.ci.meta.Local;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,6 +22,29 @@ class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
 
+    private void print(Object obj) {
+        System.out.println(obj);
+    }
+
+    @Test
+    void crud6() {
+        /*
+        print("---------------------------------------------------------------------");
+        print(userRepository.findByName("martin", Sort.by(Sort.Order.desc("id"), Sort.Order.asc("email"))));
+        print(userRepository.findFirstByName("martin", Sort.by(Sort.Order.desc("id"))));
+        */
+        print("---------------------------------------------------------------------");
+        print(userRepository.findByName("martin"));
+        print("---------------------------------------------------------------------");
+        Sort sort = Sort.by(Sort.Order.desc("id"));
+        print(userRepository.findByName("martin", PageRequest.of(1, 1, sort)));
+//        print(userRepository.findLast1ByName("martin"));
+//        print(userRepository.findLast1ByNameOOrderByIdDesc("martin"));
+//        print(userRepository.findTopByNameOrderByIdDescEmailAsc("mar"));
+    }
+
+    /*
+
     @Test
     void crud4() {
         String martinEmail = "martin@fastcampus.com";
@@ -34,8 +54,8 @@ class UserRepositoryTest {
         System.out.println(userRepository.findByCreatedAtAfter(LocalDateTime.now().minusDays(1L)));
         System.out.println(userRepository.findByCreatedAtBetween(LocalDateTime.now().minusDays(1L), LocalDateTime.now().plusDays(1L)));
 
-        System.out.println("findByIdGreaterThanEqualAndIdLessThanEqual " + userRepository.findByIdGreaterThanEqualAndIdLessThanEqual(1,3));
-        System.out.println("findByIdBetween" + userRepository.findByIdBetween(1,3));
+        System.out.println("findByIdGreaterThanEqualAndIdLessThanEqual " + userRepository.findByIdGreaterThanEqualAndIdLessThanEqual(1, 3));
+        System.out.println("findByIdBetween" + userRepository.findByIdBetween(1, 3));
 
         System.out.println("findByNameLike" + userRepository.findByNameLike("%" + "rti" + "%"));
 
@@ -63,7 +83,7 @@ class UserRepositoryTest {
         System.out.println(userRepository.findByEmailAndName(martinEmail, martinName));
         System.out.println(userRepository.findByEmailOrName(martinEmail, martinName));
 
-    }
+    }*/
 }
 
 
