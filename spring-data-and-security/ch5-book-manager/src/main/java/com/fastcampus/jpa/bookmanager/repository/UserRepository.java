@@ -94,5 +94,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "select * from user limit 1;", nativeQuery = true)
     Map<String, Object> findRawRecord();
 
+    List<User> findByEmail(String email);
 
 }

@@ -2,7 +2,7 @@ package com.fastcampus.jpa.bookmanager.repository;
 
 import com.fastcampus.jpa.bookmanager.domain.Gender;
 import com.fastcampus.jpa.bookmanager.domain.User;
-import jdk.vm.ci.meta.Local;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,9 +23,69 @@ class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private UserHistoryRepository userHistoryRepository;
+
     private void print(Object obj) {
         System.out.println(obj);
     }
+
+    @Test
+    void userHistoryTest() {
+        User user = new User();
+        user.setEmail("martin2@fastcampus.com");
+        user.setName("martin");
+
+        userRepository.save(user);
+
+        user.setName("martin-new-new");
+        userRepository.save(user);
+
+        userRepository.findAll().forEach(System.out::println);
+        userHistoryRepository.findAll().forEach(System.out::println);
+
+    }
+
+    @Test
+    void preUpdateTest() {
+//        User user2 = userRepository.findById(1L).orElseThrow(RuntimeException::new);
+//        System.out.println("as is "+ user2);
+//
+//        userRepository.save(user2);
+//
+//        System.out.println("as is "+ user2);
+//        userRepository.findBy(user2.getUpdatedAt())
+//        Assertions.assertNotEquals(user2.getUpdatedAt(), user3.getUpdatedAt());
+    }
+
+    @Test
+    void prePersistTest() {
+        User user = new User();
+        user.setEmail("martin2@fastcampus.com");
+        user.setName("martin");
+        user.setCreatedAt(LocalDateTime.now());
+        user.setUpdatedAt(LocalDateTime.now());
+
+        userRepository.save(user);
+
+        System.out.println(userRepository.findByEmail(user.getEmail()));
+    }
+
+    @Test
+    void listenerTest() {
+        User user = new User();
+        user.setEmail("martin2@fastcampus.com");
+        user.setName("martin");
+
+        userRepository.save(user);
+
+        User user2 = userRepository.findById(1L).orElseThrow(RuntimeException::new);
+
+        userRepository.save(user2);
+
+        userRepository.deleteById(4L);
+    }
+
 
     @Test
     void enumTest() {
